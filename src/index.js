@@ -1,17 +1,30 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import Layout from './component/pages/Layout';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import Home from './component/pages/Home';
+import Profile from './component/pages/Profile';
+import Contact from './component/pages/Contact';
+import LoginReg from './component/auth/LoginReg';
+import SendPasswordResetEmail from './component/auth/SendPasswordResetEmail';
+import ResetPassword from './component/auth/ResetPassword';
+
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
-);
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Layout/>} >
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
+          <Route index element={ <Home /> }/>
+          <Route path="/profile" element={ <Profile /> }/>
+          <Route path="/contact" element={ <Contact /> }/>
+          <Route path="/loginreg" element={ <LoginReg /> }/>
+          <Route path="/password_reset_mail" element={ <SendPasswordResetEmail /> }/>
+          <Route path="/reset_password" element={ <ResetPassword /> }/>
+          <Route path="/*" element={ <h1>404 Page Not Found</h1> }/>
+
+        </Route>
+      </Routes>
+    </BrowserRouter>
+);
